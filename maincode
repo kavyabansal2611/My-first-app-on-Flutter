@@ -29,8 +29,7 @@ class Homepage extends StatelessWidget {
  
   Future<void> _launchSpotifyURL() async {
     final Uri url = Uri.parse(
-        'https://open.spotify.com/track/3z8h0Fig2q9J5kvjws40sS?si=7147a4c49d4745c1'); // Example: Bohemian Rhapsody
-    
+        'https://zapp.run/edit/flutter-zr1a206arr1a3?entry=lib/main.dart&file=lib/main.dart'); 
     
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       
