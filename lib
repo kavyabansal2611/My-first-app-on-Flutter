@@ -1,1 +1,209 @@
+import 'package:flutter/material.dart';
+
+import 'package:url_launcher/url_launcher.dart';
+
+void main() {
+  runApp(const myapp());
+}
+
+class myapp extends StatelessWidget {
+  const myapp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MY FIRST APP',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
+      ),
+      home: Homepage(),
+    );
+  }
+}
+
+class Homepage extends StatelessWidget {
+  const Homepage({super.key});
+
+ 
+  Future<void> _launchSpotifyURL() async {
+    final Uri url = Uri.parse(
+        'https://open.spotify.com/track/3z8h0Fig2q9J5kvjws40sS?si=7147a4c49d4745c1'); // Example: Bohemian Rhapsody
+    
+    
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      
+      debugPrint('Could not launch $url');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+       
+        centerTitle: true,
+        title: const Text(
+          'Home Profile Page',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.blue,
+      ),
+     
+      body: SingleChildScrollView(
+        child: Center(
+          
+          child: Padding(
+            padding: const EdgeInsets.all(16.0), 
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start, 
+              children: [
+                const SizedBox(height: 30),
+                const CircleAvatar(
+                  radius: 80,
+                  backgroundImage: NetworkImage(
+                      'https://th.bing.com/th/id/OIP.ty4h_2HJDoC9LKBtB8zlOQHaE8?w=294&h=196&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3'),
+                  backgroundColor: Colors.white,
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Anonymous Dog',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, 
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.call),
+                      onPressed: () {},
+                      iconSize: 30,
+                      color: Colors.blue[200],
+                    ),
+                    
+                    const SizedBox(width: 30), 
+                    IconButton(
+                      icon: const Icon(Icons.message),
+                      onPressed: () {},
+                      iconSize: 30,
+                      color: Colors.blue[200],
+                    ),
+                    
+                    const SizedBox(width: 30), 
+                    IconButton(
+                      icon: const Icon(Icons.info_outline),
+                      onPressed: () {},
+                      iconSize: 30,
+                      color: Colors.blue[200],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'About Me',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 500),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: const Text(
+                    'Just a dog who loves to code'
+                    'I love learning new things and love treats',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0), 
+                    child: Text(
+                      'Favorite Song',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+               
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0), 
+                    
+                    child: InkWell(
+                      onTap: _launchSpotifyURL, 
+                      borderRadius: BorderRadius.circular(12),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Row(
+                          
+                          children: [
+                            Icon(Icons.music_note, color: Colors.green[300]),
+                            const SizedBox(width: 8),
+                            const Text(
+                              'Bohemian Rhapsody - Queen',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white, 
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Icon(Icons.open_in_new,
+                                size: 16, color: Colors.grey),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+               
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0), 
+                    child: Text(
+                      'ayay',
+                      textAlign: TextAlign.left, 
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
